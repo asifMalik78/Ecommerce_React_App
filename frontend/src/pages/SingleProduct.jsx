@@ -1,0 +1,217 @@
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import { useProductContext } from "../context/productContext";
+import PageNavigation from "../components/PageNavigation";
+import { Container } from "../styles/Container";
+import MyImage from "../components/MyImage";
+import FormatPrice from "../helpers/FormatPrice";
+import { TbReplace, TbTruckDelivery } from "react-icons/tb";
+import { MdSecurity } from "react-icons/md";
+import { IoMdTime } from "react-icons/Io";
+import Star from "../components/Star";
+import AddToCart from "../components/AddToCart";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+const Wrapper = styled.section`
+  .container {
+    padding: 9rem 0;
+  }
+
+  .product-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+    .product-data-warranty {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      .product-warranty-data {
+        text-align: center;
+        cursor: pointer;
+        .warranty-icon {
+          background-color: rgba(220, 220, 220, 0.5);
+          border-radius: 50%;
+          width: 4.5rem;
+          height: 4.5rem;
+          padding: 0.6rem;
+          border: 1px solid black;
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+        p {
+          font-size: 1.4rem;
+          padding-top: 0.4rem;
+        }
+      }
+    }
+    .product-data-price {
+      font-weight: bold;
+    }
+    .product-data-real-price {
+      color: ${({ theme }) => theme.colors.btn};
+    }
+    .product-data-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 1.8rem;
+      span {
+        font-weight: bold;
+      }
+    }
+    hr {
+      max-width: 100%;
+      width: 90%;
+      /* height: 0.2rem; */
+      border: 0.1rem solid #000;
+      color: red;
+    }
+  }
+  .product-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .desc {
+    padding-bottom: 1.5rem;
+  }
+
+  del {
+    font-size: 1.4rem;
+  }
+
+  .mrp {
+    font-size: 1.4rem !important;
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    .grid-two-column {
+      grid-template-columns: 1fr;
+      padding: 0rem 1.8rem;
+      row-gap: 6rem;
+    }
+
+    .product-data-warranty {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-data {
+      hr {
+        width: 100%;
+      }
+    }
+  }
+`;
+
+const API = "https://api.pujakaitem.com/api/products";
+const a = "http://localhost:5000/api/product/";
+const SingleProduct = () => {
+  const { id } = useParams();
+  const { getSingleProduct, isSingleLoading, singleProduct } =
+    useProductContext();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const {
+    id: alias,
+    name,
+    company,
+    price,
+    description,
+    category,
+    stock,
+    reviews,
+    stars,
+    image,
+  } = singleProduct;
+  useEffect(() => {
+    getSingleProduct(`${a}${id}`);
+  }, [id]);
+  return (
+    <>
+    <Header/>
+      <Wrapper>
+        <PageNavigation title={name} />
+        <Container className="container">
+          <div className="grid grid-two-column">
+            {isSingleLoading ? (
+              <span className="loader"></span>
+            ) : (
+              <div className="product_images">
+                <MyImage imgs={image} />
+              </div>
+            )}
+            {/* product data */}
+            <div className="product-data">
+              <h2>{name}</h2>
+              <p>
+                <Star stars={stars} reviews={reviews} />
+              </p>
+              <div className="product-data-price">
+                <span className="mrp">MRP</span>
+                <del>
+                  <FormatPrice price={price + 250000} />
+                </del>
+                <p className="product-data-price product-data-real-price">
+                  Deal of the Day: <FormatPrice price={price} />
+                </p>
+                <p className="desc">{description}</p>
+                <div className="product-data-warranty">
+                  <div className="product-warranty-data">
+                    <TbTruckDelivery className="warranty-icon" />
+                    <p>Free Delivery</p>
+                  </div>
+
+                  <div className="product-warranty-data">
+                    <TbReplace className="warranty-icon" />
+                    <p>30 Days Replacement</p>
+                  </div>
+
+                  <div className="product-warranty-data">
+                    <IoMdTime className="warranty-icon" />
+                    <p>Deliver on Time</p>
+                  </div>
+
+                  <div className="product-warranty-data">
+                    <MdSecurity className="warranty-icon" />
+                    <p>2 Year Warranty</p>
+                  </div>
+                </div>
+              </div>
+              <div className="product-data-info">
+                <p>
+                  Available:
+                  <span>{stock > 0 ? "In Stock" : "Not Available"}</span>
+                </p>
+
+                <p>
+                  ID : <span>{id}</span>
+                </p>
+
+                <p>
+                  Brand : <span>{company}</span>
+                </p>
+              </div>
+              <hr />
+              {stock > 0 && <AddToCart product={singleProduct} />}
+            </div>
+          </div>
+        </Container>
+      </Wrapper>
+      <Footer/>
+    </>
+  );
+};
+
+export default SingleProduct;
