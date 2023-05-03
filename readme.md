@@ -11,15 +11,6 @@ A Social Media App Where User Can Create Post , Update Post , Delete Post and Li
 
 **Database:** Mongo DB
 
-
-## Demo
-## Username
-naruto123@gmail.com
-## Password
-1234
-# Live
-https://fluffy-blancmange-e9fcc0.netlify.app
-
 Clone the project
 
 ```bash
@@ -62,10 +53,10 @@ https://curious-ganache-d26ae5.netlify.app/
 # Screenshots
 
 
-![](https://raw.githubusercontent.com/asifMalik78/Mern_Social_Media_App/master/screenshots/s1.png)
+![](https://raw.githubusercontent.com/asifMalik78/Ecommerce_React_App/master/screenshots/s1.png)
 
 
-![](https://raw.githubusercontent.com/asifMalik78/Mern_Social_Media_App/master/screenshots/s2.png)
+![](https://raw.githubusercontent.com/asifMalik78/Ecommerce_React_App/master/screenshots/s2.png)
 
 
 
