@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import { successNotification, errorNotification } from "../styles/ToastNotify";
 import { NavLink } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -109,13 +109,8 @@ const Login = () => {
     }
   };
 
-  // google login
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
+
+
   return (
     <>
       <Header />
@@ -143,8 +138,6 @@ const Login = () => {
             />
 
             <button onClick={loginHandler}>Log In</button>
-
-            <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
             <p>
               Don't have account ? <NavLink to="/register">Register</NavLink>
             </p>

@@ -17,8 +17,7 @@ import { useUserContext } from "./context/userContext";
 import Profile from "./pages/Profile";
 import UpdateProfile from "./pages/UpdateProfile";
 import ChangePassword from "./pages/ChangePassword";
-import { PaymentCancel, PaymentSuccess } from "./pages/Payment";
-import StripeContainer from "./stripe/StripeContainer";
+
 
 function App() {
   const { user } = useUserContext();
@@ -27,8 +26,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <GlobalStyle />
-          {/* <Header/> */}
-          <StripeContainer/>
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -36,18 +34,20 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/singleproduct/:id" element={<SingleProduct />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/register" element={user ? <Home/> : <Register />} />
+            <Route path="/register" element={user ? <Home /> : <Register />} />
             <Route path="/login" element={user ? <Home /> : <Login />} />
-            <Route path="/profile" element={user ? <Profile /> : <Login/>} />
-            <Route path="/profile/update" element={user ? <UpdateProfile /> : <Login/>} />
-            <Route path="/profile/change_password" element={user ? <ChangePassword/> : <Login/>} />
-            <Route path="/success" element={<PaymentSuccess/>}/>
-            <Route path="/cancel" element={<PaymentCancel/>}/>
+            <Route path="/profile" element={user ? <Profile /> : <Login />} />
+            <Route
+              path="/profile/update"
+              element={user ? <UpdateProfile /> : <Login />}
+            />
+            <Route
+              path="/profile/change_password"
+              element={user ? <ChangePassword /> : <Login />}
+            />
+
             <Route path="*" element={<Error />} />
           </Routes>
-          {/* <Footer/> */}
-
-          <Routes></Routes>
         </Router>
       </ThemeProvider>
     </>

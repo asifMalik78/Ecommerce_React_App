@@ -7,36 +7,22 @@ import FormatPrice from "../helpers/FormatPrice";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useUserContext } from "../context/userContext";
-import { errorNotification } from "../styles/ToastNotify";
-import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
+import { errorNotification, successNotification } from "../styles/ToastNotify";
 const Cart = () => {
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
   const navigate = useNavigate();
   const { user } = useUserContext();
-
-  const stripe = useStripe();
-  const elements = useElements();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
       errorNotification("Login To Order");
       return;
-    }
-
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement),
-    });
-
-    if (!error) {
-      console.log("Stripe 23 | token generated!", paymentMethod);
-      //send token to backend here
     } else {
-      console.log(error.message);
+      successNotification("Order Successfully");
     }
   };
-  if (cart.length === 0) {
+  if (cart?.length === 0) {
     return (
       <>
         <Header />
@@ -64,9 +50,10 @@ const Cart = () => {
           <hr />
 
           <div className="cart-item">
-            {cart.map((curr) => {
-              return <CartItem key={curr.id} {...curr} />;
-            })}
+            {cart &&
+              cart.map((curr) => {
+                return <CartItem key={curr.id} {...curr} />;
+              })}
           </div>
           <hr />
 
@@ -102,7 +89,6 @@ const Cart = () => {
                 </p>
               </div>
               <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-                <PaymentElement />
                 <Button>Order Now</Button>
               </form>
             </div>
