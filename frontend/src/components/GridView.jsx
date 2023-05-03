@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Product from "./Product";
 const GridView = ({ product }) => {
-  console.log("i am products man ", product);
+  
   return (
     <Wrapper>
       <div className="container grid grid-three-column">
@@ -31,7 +31,6 @@ const Wrapper = styled.section`
     position: relative;
     overflow: hidden;
     transition: all 0.5s linear;
-
     &::after {
       content: "";
       position: absolute;
@@ -41,6 +40,7 @@ const Wrapper = styled.section`
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5);
       transition: all 0.2s linear;
+      border-radius: 1rem 1rem 0rem 0rem;
       cursor: pointer;
     }
 

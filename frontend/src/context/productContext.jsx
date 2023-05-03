@@ -3,8 +3,7 @@ import axios from "axios";
 import reducer from "../reducer/productReducer";
 const AppContext = createContext();
 
-const API = "https://api.pujakaitem.com/api/products";
-const a = "http://localhost:5000/api/product/all";
+
 const initialState = {
   isLoading: false,
   isError: false,
@@ -23,7 +22,6 @@ const AppProvider = ({ children }) => {
     try {
       const res = await axios.get(url);
       const products = await res.data;
-      console.log(products);
       dispatch({ type: "SET_API_DATA", payload: products });
     } catch (error) {
       dispatch({ type: "API_ERROR" });
@@ -43,7 +41,7 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getProducts(a);
+    getProducts(`${import.meta.env.VITE_BASE_URL}/product/all`);
   }, []);
   return (
     <AppContext.Provider value={{ ...state , getSingleProduct }}>{children}</AppContext.Provider>

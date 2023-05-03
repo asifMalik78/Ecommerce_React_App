@@ -107,7 +107,7 @@ const HeroSection = ({name}) => {
           {/* right part */}
           <div className="hero-section-image">
                 <figure>
-                    <img src="http://127.0.0.1:5173/images/hero.png" alt="hero section image" />
+                    <img src="https://raw.githubusercontent.com/asifMalik78/Ecommerce_React_App/master/screenshots/hero.png" alt="hero section image" />
                 </figure>
             </div>
         </div>

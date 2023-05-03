@@ -66,7 +66,7 @@ const Wrapper = styled.section`
     }
   }
 `;
-const API = "http://localhost:5000/api/auth/signup";
+const API = `${import.meta.env.VITE_BASE_URL}/auth/signup`;
 const Register = () => {
   const [userData, setUserData] = useState({
     username: "",
@@ -115,7 +115,7 @@ const Register = () => {
           <form className="login-form">
             <figure className="logo-image">
               <img
-                src="http://127.0.0.1:5173/images/logo.png"
+                src="https://raw.githubusercontent.com/asifMalik78/Ecommerce_React_App/master/screenshots/logo.png"
                 alt=""
                 className="src"
               />

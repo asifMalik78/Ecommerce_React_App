@@ -71,7 +71,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const API = "http://localhost:5000/api/auth/signin";
+const API = `${import.meta.env.VITE_BASE_URL}/auth/signin`;
 const Login = () => {
   const [userData, setUserData] = useState({
     email: "",
@@ -118,7 +118,7 @@ const Login = () => {
         <div className="container">
           <form className="login-form">
             <figure className="logo-image">
-              <img src="http://127.0.0.1:5173/images/logo.png" alt="" />
+              <img src="https://raw.githubusercontent.com/asifMalik78/Ecommerce_React_App/master/screenshots/logo.png" alt="" />
             </figure>
             <input
               type="email"

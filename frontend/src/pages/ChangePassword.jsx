@@ -110,7 +110,7 @@ const ChangePassword = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/user/${user._id}`,
+        `${import.meta.env.VITE_BASE_URL}/api/user/${user._id}`,
         { password: userData.password },
         {
           headers: {

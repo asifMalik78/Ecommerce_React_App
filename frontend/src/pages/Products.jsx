@@ -20,7 +20,7 @@ const Products = () => {
            alignItems:"center"
            }}>
           <img
-            src="http://localhost:5173/images/Iphone-spinner-2.gif"
+            src="https://raw.githubusercontent.com/asifMalik78/Ecommerce_React_App/master/screenshots/Iphone-spinner-2.gif"
             alt="gif"
             className="src"
           />

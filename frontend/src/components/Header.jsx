@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <MainHeader>
         <NavLink to="/">
-            <img src='http://localhost:5173/images/logo.png' alt='Logo Image' className='logo'/>
+            <img src='https://raw.githubusercontent.com/asifMalik78/Ecommerce_React_App/master/screenshots/logo.png' alt='Logo Image' className='logo'/>
         </NavLink>
 
         <Navbar/>

@@ -32,16 +32,12 @@ export const UserContextProvider = ({ children }) => {
       const fileName = Date.now() + file.name;
       data.append("fileName", fileName);
       data.append("file", file);
-      // setUserData((prev) => {
-      //   return {
-      //     ...prev,
-      //     ["img"]: `http://localhost:5000/images/${fileName}`,
-      //   };
-      // });
-      userData.img = `http://localhost:5000/images/${fileName}`;
+    
+      userData.img = `${import.meta.env.VITE_BASE_URL}/images/${fileName}`;
+ 
       try {
         const res = await axios.post(
-          "http://localhost:5000/api/upload/image",
+          `${import.meta.env.VITE_BASE_URL}/upload/image`,
           data
         );
 
@@ -52,9 +48,9 @@ export const UserContextProvider = ({ children }) => {
     }
 
     try {
-      console.log(userData);
+     
       const res = await axios.put(
-        `http://localhost:5000/api/user/${state.user._id}`,
+        `${import.meta.env.VITE_BASE_URL}/user/${state.user._id}`,
         userData,
         {
           headers: {

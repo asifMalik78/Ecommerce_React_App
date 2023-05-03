@@ -12,7 +12,7 @@ dotenv.config();
 
 const app = express();
 
-app.use('/images' , express.static(path.join(__dirname , '/public/images')));
+app.use('/api/images' , express.static(path.join(__dirname , '/public/images')));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));

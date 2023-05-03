@@ -127,7 +127,6 @@ const cartReducer = (state, action) => {
         acc = acc + (price * amount);
         return acc;
       } , 0);
-console.log("i am total price");
       return {
         ...state , 
         total_price:totalPriceVal

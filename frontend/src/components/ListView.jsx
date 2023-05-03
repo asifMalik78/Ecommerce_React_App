@@ -4,34 +4,36 @@ import FormatPrice from "../helpers/FormatPrice";
 import { Button } from "../styles/Button";
 const ListView = ({ product }) => {
   const navigate = useNavigate();
+
   return (
     <Wrapper>
       <div className="container grid">
-        {product.map((curr) => {
-          const { id, name, image, price, description } = curr;
-          return (
-            <div className="card grid list-grid-two-column" key={id}>
-              <figure>
-                <img src={image[0]} alt="my image" />
-              </figure>
+        {product &&
+          product.map((curr, idx) => {
+            const { _id, name, image, price, description } = curr;
+            return (
+              <div className="card grid list-grid-two-column" key={_id}>
+                <figure>
+                  <img src={image[0]} alt="my image" />
+                </figure>
 
-              <div className="card-data">
-                <h3>{name}</h3>
-                <p>
-                  <FormatPrice price={price} />
-                </p>
-                <p>{description.slice(0, 80)}....</p>
+                <div className="card-data">
+                  <h3>{name}</h3>
+                  <p>
+                    <FormatPrice price={price} />
+                  </p>
+                  <p>{description.slice(0, 80)}....</p>
 
-                <Button
-                  className="btn"
-                  onClick={() => navigate(`/singleproduct/${id}`)}
-                >
-                  Read More
-                </Button>
+                  <Button
+                    className="btn"
+                    onClick={() => navigate(`/singleproduct/${id}`)}
+                  >
+                    Read More
+                  </Button>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </Wrapper>
   );
@@ -41,7 +43,7 @@ const Wrapper = styled.section`
   padding: 7rem 0;
 
   .container {
-    width:100%;
+    width: 100%;
   }
 
   .grid {
@@ -49,12 +51,12 @@ const Wrapper = styled.section`
   }
 
   .list-grid-two-column {
-    grid-template-columns:0.6fr 1fr;
-    border-radius:0.5rem;
+    grid-template-columns: 0.6fr 1fr;
+    border-radius: 0.5rem;
   }
 
   figure {
-    width:100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,7 +138,7 @@ const Wrapper = styled.section`
     }
   }
 
-  @media (max-width:${({theme}) => theme.media.mobile}){
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
     display: none;
   }
 `;

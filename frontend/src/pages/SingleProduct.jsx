@@ -113,8 +113,8 @@ const Wrapper = styled.section`
   }
 `;
 
-const API = "https://api.pujakaitem.com/api/products";
-const a = "http://localhost:5000/api/product/";
+
+const API = `${import.meta.env.VITE_BASE_URL}/product/`;
 const SingleProduct = () => {
   const { id } = useParams();
   const { getSingleProduct, isSingleLoading, singleProduct } =
@@ -136,7 +136,7 @@ const SingleProduct = () => {
     image,
   } = singleProduct;
   useEffect(() => {
-    getSingleProduct(`${a}${id}`);
+    getSingleProduct(`${API}${id}`);
   }, [id]);
   return (
     <>

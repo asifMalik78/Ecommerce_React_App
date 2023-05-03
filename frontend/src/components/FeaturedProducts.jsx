@@ -122,11 +122,8 @@ const Wrapper = styled.section`
 
 `;
 const FeaturedProducts = () => {
-  const { isLoading, featuredProducts, isError } = useProductContext();
-  if(isLoading){
-    return (<div>Loading...</div>);
-  }
-
+  const {  featuredProducts } = useProductContext();
+  
   return (
     <Wrapper>
       <div className="container">
