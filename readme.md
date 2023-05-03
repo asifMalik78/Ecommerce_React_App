@@ -1,7 +1,5 @@
 
-# Social Media App
-
-A Social Media App Where User Can Create Post , Update Post , Delete Post and Like the Post And Follow Others Users and Search Other Users
+# Ecommerce Website
 
 ## Tech Stack
 
